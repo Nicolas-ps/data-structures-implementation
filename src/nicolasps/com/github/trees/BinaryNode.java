@@ -1,7 +1,7 @@
 package nicolasps.com.github.trees;
 
 public class BinaryNode<T> {
-    private T value;
+    private final T value;
     private BinaryNode<T> left;
     private BinaryNode<T> right;
     private BinaryNode<T> parent;
@@ -28,10 +28,6 @@ public class BinaryNode<T> {
 
     public T getValue() {
         return value;
-    }
-
-    public void setValue(T value) {
-        this.value = value;
     }
 
     public BinaryNode<T> getParent() {
