@@ -51,12 +51,48 @@ public class BST {
         return this.printInOrderRecursive(this.root);
     }
 
-    public String printInOrderRecursive(BinaryNode<Integer> binaryNode) {
+    public String printPreOrder() {
+        return this.printPreOrderRecursive(this.root);
+    }
+
+    public String printPosOrder() {
+        return this.printPostOrderRecursive(this.root);
+    }
+
+    private String printInOrderRecursive(BinaryNode<Integer> binaryNode) {
+        if (Objects.isNull(binaryNode)) {
+            return "";
+        }
+
         StringBuilder stringBuilder = new StringBuilder();
 
         stringBuilder.append(this.printInOrderRecursive(binaryNode.getLeft()));
-        stringBuilder.append(binaryNode.getValue());
+        stringBuilder.append(binaryNode.getValue()).append(" - ");
         stringBuilder.append(this.printInOrderRecursive(binaryNode.getRight()));
+
+        return stringBuilder.toString();
+    }
+
+    private String printPreOrderRecursive(BinaryNode<Integer> binaryNode) {
+        if(Objects.isNull(binaryNode)) {
+            return "";
+        }
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(binaryNode.getValue()).append(" - ");
+        stringBuilder.append(printPreOrderRecursive(binaryNode.getLeft()));
+        stringBuilder.append(printPreOrderRecursive(binaryNode.getRight()));
+
+        return stringBuilder.toString();
+    }
+
+    private String printPostOrderRecursive(BinaryNode<Integer> binaryNode) {
+        if(Objects.isNull(binaryNode)) {
+            return "";
+        }
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(printPreOrderRecursive(binaryNode.getLeft()));
+        stringBuilder.append(printPreOrderRecursive(binaryNode.getRight()));
+        stringBuilder.append(binaryNode.getValue()).append(" - ");
 
         return stringBuilder.toString();
     }
